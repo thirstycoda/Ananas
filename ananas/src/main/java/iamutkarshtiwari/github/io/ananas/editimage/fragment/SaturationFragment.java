@@ -21,7 +21,7 @@ public class SaturationFragment extends BaseEditFragment {
 
     public static final int INDEX = ModuleConfig.INDEX_CONTRAST;
     private static final int INITIAL_SATURATION = 100;
-    public static final String TAG = SaturationFragment.class.getName();
+
     private SaturationView mSaturationView;
     private SeekBar mSeekBar;
     private View mainView;

@@ -5,7 +5,6 @@
     <string name="iamutkarshtiwari_github_io_ananas_done">完了</string>
     <string name="iamutkarshtiwari_github_io_ananas_apply">申し込み</string>
 
-    <string name="iamutkarshtiwari_github_io_ananas_stickers">ステッカー</string>
     <string name="iamutkarshtiwari_github_io_ananas_filter">フィルタ</string>
     <string name="iamutkarshtiwari_github_io_ananas_crop">トリム</string>
     <string name="iamutkarshtiwari_github_io_ananas_rotate">回る</string>
@@ -18,16 +17,12 @@
     <string name="iamutkarshtiwari_github_io_ananas_default_font_name">デフォルト</string>
 
     <string name="materialcolorpicker__errHex">16進コード形式が正しくない</string>
-    <string name="materialcolorpicker__btnSelectColor">選び出す</string>
     <string name="iamutkarshtiwari_github_io_ananas_saving_image">保存中…</string>
-    <string name="iamutkarshtiwari_github_io_ananas_input_hint">入力テキスト…</string>
 
     <string name="iamutkarshtiwari_github_io_ananas_not_selected">編集する画像を選択してください</string>
-    <string name="iamutkarshtiwari_github_io_ananas_auto_newline">自動改行</string>
     <string name="iamutkarshtiwari_github_io_ananas_save_error">エラーを保存する!</string>
     <string name="iamutkarshtiwari_github_io_ananas_load_error">画像を読み込めませんでした。</string>
     <string name="iamutkarshtiwari_github_io_ananas_loading">充填…</string>
-    <string name="iamutkarshtiwari_github_io_ananas_pick_a_color">色を選ぶ</string>
 
     <string name="iamutkarshtiwari_github_io_ananas_free_size">自由にする</string>
     <string name="iamutkarshtiwari_github_io_ananas_fit_image">元の</string>
@@ -67,34 +62,6 @@
         <item>filter_12</item>
     </string-array>
 
-    <string-array translatable="false" name="iamutkarshtiwari_github_io_ananas_types">
-        <item>type1</item>
-        <item>type2</item>
-        <item>type3</item>
-        <item>type4</item>
-        <item>type5</item>
-        <item>type6</item>
-    </string-array>
-
-    <string-array name="iamutkarshtiwari_github_io_ananas_type_names">
-        <item>タイプ 1</item>
-        <item>タイプ 2</item>
-        <item>タイプ 3</item>
-        <item>タイプ 4</item>
-        <item>タイプ 5</item>
-        <item>タイプ 6</item>
-    </string-array>
-
-    <integer-array translatable="false" name="iamutkarshtiwari_github_io_ananas_type_count">
-        <item>5</item>
-        <item>5</item>
-        <item>5</item>
-        <item>5</item>
-        <item>4</item>
-        <item>5</item>
-    </integer-array>
-
-    <string name="iamutkarshtiwari_github_io_ananas_more">もっと</string>
     <string name="iamutkarshtiwari_github_io_ananas_exit_without_save">編集した画像は保存されません。退室しますか？</string>
     <string name="iamutkarshtiwari_github_io_ananas_confirm">確認</string>
     <string name="iamutkarshtiwari_github_io_ananas_cancel">取り消し</string>
@@ -103,8 +70,6 @@
     <string name="iamutkarshtiwari_github_io_ananas_smooth">滑らかさ</string>
     <string name="iamutkarshtiwari_github_io_ananas_white_skin">スキントーン</string>
 
-    <item type="id" translatable="false" name="iamutkarshtiwari_github_io_ananas_TAG_STICKERS_PATH" />
-    <item type="id" translatable="false" name="iamutkarshtiwari_github_io_ananas_TAG_STICKERS_COUNT" />
     <string name="iamutkarshtiwari_github_io_ananas_eraser">消しゴム</string>
     <string name="iamutkarshtiwari_github_io_ananas_brush">絵筆</string>
 </resources>

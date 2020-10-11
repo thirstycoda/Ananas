@@ -26,7 +26,6 @@ import io.reactivex.schedulers.Schedulers;
 public class FilterListFragment extends BaseEditFragment {
     public static final int INDEX = ModuleConfig.INDEX_FILTER;
     public static final int NULL_FILTER_INDEX = 0;
-    public static final String TAG = FilterListFragment.class.getName();
 
     private View mainView;
     private Bitmap filterBitmap;

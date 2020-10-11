@@ -10,7 +10,7 @@
         android:layout_centerVertical="true"
         android:paddingHorizontal="16dp"
         android:scaleType="center"
-        android:src="@drawable/image_edit_back" />
+        android:src="@drawable/back_arrow" />
 
     <LinearLayout
         android:id="@+id/add_text_btn"

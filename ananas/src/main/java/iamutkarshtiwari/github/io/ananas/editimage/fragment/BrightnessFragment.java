@@ -21,7 +21,6 @@ import iamutkarshtiwari.github.io.ananas.editimage.view.imagezoom.ImageViewTouch
 public class BrightnessFragment extends BaseEditFragment {
 
     public static final int INDEX = ModuleConfig.INDEX_BRIGHTNESS;
-    public static final String TAG = BrightnessFragment.class.getName();
 
     private static final int INITIAL_BRIGHTNESS = 0;
 

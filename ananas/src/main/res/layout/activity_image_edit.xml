@@ -91,7 +91,7 @@
         android:layout_width="fill_parent"
         android:layout_height="@dimen/bottom_banner_height"
         android:layout_alignParentBottom="true"
-        android:background="@color/main_backgroud"
+        android:background="@color/main_background"
         android:overScrollMode="never" />
 
     <FrameLayout
@@ -138,13 +138,6 @@
 
         <iamutkarshtiwari.github.io.ananas.editimage.view.SaturationView
             android:id="@+id/contrast_panel"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_gravity="center"
-            android:visibility="gone" />
-
-        <iamutkarshtiwari.github.io.ananas.editimage.view.StickerView
-            android:id="@+id/sticker_panel"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_gravity="center"

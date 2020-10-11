@@ -36,7 +36,6 @@ import io.reactivex.disposables.CompositeDisposable;
 
 public class CropFragment extends BaseEditFragment {
     public static final int INDEX = ModuleConfig.INDEX_CROP;
-    public static final String TAG = CropFragment.class.getName();
     public static final float NO_ASPECT_RATIO_LIMIT = -1;
 
     private static int SELECTED_COLOR = R.color.white;

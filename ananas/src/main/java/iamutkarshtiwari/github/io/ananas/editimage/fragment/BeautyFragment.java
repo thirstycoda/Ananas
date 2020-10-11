@@ -23,8 +23,6 @@ import io.reactivex.schedulers.Schedulers;
 
 
 public class BeautyFragment extends BaseEditFragment implements SeekBar.OnSeekBarChangeListener {
-    public static final String TAG = BeautyFragment.class.getName();
-
     public static final int INDEX = ModuleConfig.INDEX_BEAUTY;
 
     private View mainView;

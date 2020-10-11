@@ -33,7 +33,6 @@ import io.reactivex.schedulers.Schedulers;
 public class PaintFragment extends BaseEditFragment implements View.OnClickListener, BrushConfigDialog.Properties, EraserConfigDialog.Properties {
 
     public static final int INDEX = ModuleConfig.INDEX_PAINT;
-    public static final String TAG = PaintFragment.class.getName();
 
     private static final float MAX_PERCENT = 100;
     private static final float MAX_ALPHA = 255;

@@ -34,7 +34,6 @@ import io.reactivex.schedulers.Schedulers;
 public class AddTextFragment extends BaseEditFragment implements View.OnClickListener {
 
     public static final int INDEX = ModuleConfig.INDEX_ADDTEXT;
-    public static final String TAG = AddTextFragment.class.getName();
     private final HashMap<String, Typeface> fonts;
 
     private View mainView;

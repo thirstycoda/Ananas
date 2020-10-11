@@ -45,7 +45,6 @@ import iamutkarshtiwari.github.io.ananas.editimage.fragment.FilterListFragment;
 import iamutkarshtiwari.github.io.ananas.editimage.fragment.MainMenuFragment;
 import iamutkarshtiwari.github.io.ananas.editimage.fragment.RotateFragment;
 import iamutkarshtiwari.github.io.ananas.editimage.fragment.SaturationFragment;
-import iamutkarshtiwari.github.io.ananas.editimage.fragment.StickerFragment;
 import iamutkarshtiwari.github.io.ananas.editimage.fragment.crop.AspectRatio;
 import iamutkarshtiwari.github.io.ananas.editimage.fragment.crop.CropFragment;
 import iamutkarshtiwari.github.io.ananas.editimage.fragment.paint.PaintFragment;
@@ -53,7 +52,6 @@ import iamutkarshtiwari.github.io.ananas.editimage.interfaces.OnLoadingDialogLis
 import iamutkarshtiwari.github.io.ananas.editimage.utils.BitmapUtils;
 import iamutkarshtiwari.github.io.ananas.editimage.utils.PermissionUtils;
 import iamutkarshtiwari.github.io.ananas.editimage.view.BrightnessView;
-import iamutkarshtiwari.github.io.ananas.editimage.view.CustomPaintView;
 import iamutkarshtiwari.github.io.ananas.editimage.view.CustomViewPager;
 import iamutkarshtiwari.github.io.ananas.editimage.view.RotateImageView;
 import iamutkarshtiwari.github.io.ananas.editimage.view.SaturationView;
@@ -69,15 +67,14 @@ import io.reactivex.schedulers.Schedulers;
 public class EditImageActivity extends BaseActivity implements OnLoadingDialogListener {
     public static final String IS_IMAGE_EDITED = "is_image_edited";
     public static final int MODE_NONE = 0;
-    public static final int MODE_STICKERS = 1;
-    public static final int MODE_FILTER = 2;
-    public static final int MODE_CROP = 3;
-    public static final int MODE_ROTATE = 4;
-    public static final int MODE_TEXT = 5;
-    public static final int MODE_PAINT = 6;
-    public static final int MODE_BEAUTY = 7;
-    public static final int MODE_BRIGHTNESS = 8;
-    public static final int MODE_SATURATION = 9;
+    public static final int MODE_FILTER = 1;
+    public static final int MODE_CROP = 2;
+    public static final int MODE_ROTATE = 3;
+    public static final int MODE_TEXT = 4;
+    public static final int MODE_PAINT = 5;
+    public static final int MODE_BEAUTY = 6;
+    public static final int MODE_BRIGHTNESS = 7;
+    public static final int MODE_SATURATION = 8;
     public static HashMap<String, Typeface> fonts;
     private static final int PERMISSIONS_REQUEST_CODE = 110;
 
@@ -96,13 +93,11 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
     protected boolean isBeenSaved = false;
     protected boolean isPortraitForced = false;
     protected boolean isSupportActionBarEnabled = false;
-    public CustomPaintView paintView;
     public ViewFlipper bannerFlipper;
     public BrightnessView brightnessView;
     public SaturationView saturationView;
     public RotateImageView rotatePanel;
     public CustomViewPager bottomGallery;
-    public StickerFragment stickerFragment;
     public FilterListFragment filterListFragment;
     public CropFragment cropFragment;
     public RotateFragment rotateFragment;
@@ -222,7 +217,6 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
 
         cropPanel = findViewById(R.id.crop_panel);
         rotatePanel = findViewById(R.id.rotate_panel);
-        paintView = findViewById(R.id.custom_paint_view);
         brightnessView = findViewById(R.id.brightness_panel);
         saturationView = findViewById(R.id.contrast_panel);
         bottomGallery = findViewById(R.id.bottom_gallery);
@@ -232,7 +226,6 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
 
         BottomGalleryAdapter bottomGalleryAdapter = new BottomGalleryAdapter(
                 this.getSupportFragmentManager());
-        stickerFragment = StickerFragment.newInstance();
         filterListFragment = FilterListFragment.newInstance();
 
         cropFragment = CropFragment.newInstance();
@@ -307,9 +300,6 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
     @Override
     public void onBackPressed() {
         switch (mode) {
-            case MODE_STICKERS:
-                stickerFragment.backToMain();
-                break;
             case MODE_FILTER:
                 filterListFragment.backToMain();
                 break;
@@ -540,8 +530,6 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
             switch (index) {
                 case MainMenuFragment.INDEX:
                     return mainMenuFragment;
-                case StickerFragment.INDEX:
-                    return stickerFragment;
                 case FilterListFragment.INDEX:
                     return filterListFragment;
                 case CropFragment.INDEX:
@@ -564,7 +552,7 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
 
         @Override
         public int getCount() {
-            return 10;
+            return 9;
         }
     }
 
@@ -583,9 +571,6 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
         @Override
         public void onClick(View v) {
             switch (mode) {
-                case MODE_STICKERS:
-                    stickerFragment.applyStickers();
-                    break;
                 case MODE_FILTER:
                     filterListFragment.applyFilterImage();
                     break;

@@ -11,7 +11,7 @@
         android:layout_gravity="center_vertical"
         android:paddingHorizontal="16dp"
         android:scaleType="center"
-        android:src="@drawable/image_edit_back" />
+        android:src="@drawable/back_arrow" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/filter_recycler"
