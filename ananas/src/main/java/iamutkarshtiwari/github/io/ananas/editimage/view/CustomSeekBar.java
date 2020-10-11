@@ -15,7 +15,6 @@ public class CustomSeekBar extends SeekBar {
     private Paint paint;
     private int seekbar_height;
     private float max;
-    private float mid;
 
     public CustomSeekBar(Context context) {
         super(context);
@@ -29,7 +28,6 @@ public class CustomSeekBar extends SeekBar {
         paint = new Paint();
         seekbar_height = 6;
         this.max = getMax();
-        this.mid = max / 2f;
     }
 
     public CustomSeekBar(Context context, AttributeSet attrs, int defStyle) {

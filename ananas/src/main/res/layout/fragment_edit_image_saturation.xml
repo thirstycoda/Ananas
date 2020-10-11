@@ -8,7 +8,7 @@
         android:layout_marginLeft="16dp"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:src="@drawable/image_edit_back" />
+        android:src="@drawable/back_arrow" />
 
     <iamutkarshtiwari.github.io.ananas.editimage.view.CustomSeekBar
         android:id="@+id/seekBar"

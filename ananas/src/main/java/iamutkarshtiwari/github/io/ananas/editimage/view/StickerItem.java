@@ -32,7 +32,6 @@ public class StickerItem {
     public Matrix matrix;
     private float roatetAngle = 0;
     boolean isDrawHelpTool = false;
-    private Paint paint = new Paint();
     private Paint helpBoxPaint = new Paint();
 
     private float initWidth;
@@ -119,8 +118,7 @@ public class StickerItem {
         this.detectDeleteRect.offset(dx, dy);
     }
 
-    void updateRotateAndScale(final float oldx, final float oldy,
-                              final float dx, final float dy) {
+    void updateRotateAndScale(final float dx, final float dy) {
         float c_x = dstRect.centerX();
         float c_y = dstRect.centerY();
 

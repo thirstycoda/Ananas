@@ -16,7 +16,7 @@
             android:layout_marginLeft="16dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:src="@drawable/image_edit_back" />
+            android:src="@drawable/back_arrow" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/stickers_type_list"
@@ -39,7 +39,7 @@
             android:layout_marginLeft="16dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:src="@drawable/image_edit_back" />
+            android:src="@drawable/back_arrow" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/stickers_list"

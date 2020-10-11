@@ -33,7 +33,6 @@ import io.reactivex.schedulers.Schedulers;
 
 public class CropFragment extends BaseEditFragment {
     public static final int INDEX = ModuleConfig.INDEX_CROP;
-    public static final String TAG = CropFragment.class.getName();
 
     private static int SELECTED_COLOR = R.color.white;
     private static int UNSELECTED_COLOR = R.color.text_color_gray_3;

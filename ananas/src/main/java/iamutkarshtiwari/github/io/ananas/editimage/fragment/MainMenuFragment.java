@@ -15,7 +15,6 @@ import iamutkarshtiwari.github.io.ananas.editimage.fragment.paint.PaintFragment;
 public class MainMenuFragment extends BaseEditFragment implements View.OnClickListener {
     public static final int INDEX = ModuleConfig.INDEX_MAIN;
 
-    public static final String TAG = MainMenuFragment.class.getName();
     private View mainView;
 
     private View stickerBtn;

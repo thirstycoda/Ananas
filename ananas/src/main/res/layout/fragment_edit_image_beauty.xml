@@ -1,7 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@color/main_backgroud">
+    android:background="@color/main_background">
 
     <ImageView
         android:id="@+id/back_to_main"
@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
-        android:src="@drawable/image_edit_back" />
+        android:src="@drawable/back_arrow" />
 
     <LinearLayout
         android:layout_width="fill_parent"

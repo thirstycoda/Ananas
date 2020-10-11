@@ -87,12 +87,10 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
     public StickerView stickerView;
     public CropImageView cropPanel;
     public ImageViewTouch mainImage;
-    public TextStickerView textStickerView;
     public int mode = MODE_NONE;
     protected boolean isBeenSaved = false;
     protected boolean isPortraitForced = false;
     protected boolean isSupportActionBarEnabled = false;
-    public CustomPaintView paintView;
     public ViewFlipper bannerFlipper;
     public BrightnessView brightnessView;
     public SaturationView saturationView;
@@ -202,8 +200,6 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
         stickerView = findViewById(R.id.sticker_panel);
         cropPanel = findViewById(R.id.crop_panel);
         rotatePanel = findViewById(R.id.rotate_panel);
-        textStickerView = findViewById(R.id.text_sticker_panel);
-        paintView = findViewById(R.id.custom_paint_view);
         brightnessView = findViewById(R.id.brightness_panel);
         saturationView = findViewById(R.id.contrast_panel);
         bottomGallery = findViewById(R.id.bottom_gallery);

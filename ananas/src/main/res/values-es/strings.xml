@@ -20,16 +20,12 @@
     <string name="iamutkarshtiwari_github_io_ananas_opacity">Opacidad</string>
 
     <string name="materialcolorpicker__errHex">Formato de Codigo Hex incorrecto</string>
-    <string name="materialcolorpicker__btnSelectColor">Seleccionar</string>
     <string name="iamutkarshtiwari_github_io_ananas_saving_image">Guardando...</string>
-    <string name="iamutkarshtiwari_github_io_ananas_input_hint">Campo de Texto ...</string>
 
     <string name="iamutkarshtiwari_github_io_ananas_not_selected">Porfavor elija una imagen para editar</string>
-    <string name="iamutkarshtiwari_github_io_ananas_auto_newline">NuevaLineaAuto.</string>
     <string name="iamutkarshtiwari_github_io_ananas_save_error">Error en guardado!</string>
     <string name="iamutkarshtiwari_github_io_ananas_load_error">Fallo la carga de imagen!</string>
     <string name="iamutkarshtiwari_github_io_ananas_loading">Cargando...</string>
-    <string name="iamutkarshtiwari_github_io_ananas_pick_a_color">Seleccione un color</string>
 
     <string name="iamutkarshtiwari_github_io_ananas_free_size">LIBRE</string>
     <string name="iamutkarshtiwari_github_io_ananas_fit_image">ORIGINAL</string>
@@ -96,7 +92,6 @@
         <item>5</item>
     </integer-array>
 
-    <string name="iamutkarshtiwari_github_io_ananas_more">Mas</string>
     <string name="iamutkarshtiwari_github_io_ananas_exit_without_save">La imagen no esta guardada. Quiere salir?</string>
     <string name="iamutkarshtiwari_github_io_ananas_confirm">Confirmar</string>
     <string name="iamutkarshtiwari_github_io_ananas_cancel">Cancelar</string>

@@ -46,7 +46,6 @@ import io.reactivex.schedulers.Schedulers;
 public class AddTextFragment extends BaseEditFragment implements OnPhotoEditorListener, View.OnClickListener, OnMainBitmapChangeListener, OnMultiTouchListener {
 
     public static final int INDEX = ModuleConfig.INDEX_ADDTEXT;
-    public static final String TAG = AddTextFragment.class.getName();
 
     private View mainView;
     private TextStickerView textStickersParentView;

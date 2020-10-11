@@ -22,6 +22,6 @@
         android:layout_centerVertical="true"
         android:layout_gravity="center_vertical"
         android:layout_marginLeft="16dp"
-        android:src="@drawable/image_edit_back" />
+        android:src="@drawable/back_arrow" />
 
 </RelativeLayout>

@@ -37,7 +37,6 @@ import io.reactivex.schedulers.Schedulers;
 
 public class StickerFragment extends BaseEditFragment {
     public static final int INDEX = ModuleConfig.INDEX_STICKER;
-    public static final String TAG = StickerFragment.class.getName();
 
     private View mainView;
     private ViewFlipper flipper;

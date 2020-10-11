@@ -27,7 +27,6 @@ import io.reactivex.schedulers.Schedulers;
 
 public class RotateFragment extends BaseEditFragment implements OnClickListener {
     public static final int INDEX = ModuleConfig.INDEX_ROTATE;
-    public static final String TAG = RotateFragment.class.getName();
 
     private static final int RIGHT_ANGLE = 90;
 
