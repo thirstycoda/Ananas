@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -33,6 +34,8 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
+import java.util.HashMap;
+
 import iamutkarshtiwari.github.io.ananas.BaseActivity;
 import iamutkarshtiwari.github.io.ananas.R;
 import iamutkarshtiwari.github.io.ananas.editimage.fragment.AddTextFragment;
@@ -47,7 +50,6 @@ import iamutkarshtiwari.github.io.ananas.editimage.fragment.crop.AspectRatio;
 import iamutkarshtiwari.github.io.ananas.editimage.fragment.crop.CropFragment;
 import iamutkarshtiwari.github.io.ananas.editimage.fragment.paint.PaintFragment;
 import iamutkarshtiwari.github.io.ananas.editimage.interfaces.OnLoadingDialogListener;
-import iamutkarshtiwari.github.io.ananas.editimage.interfaces.OnMainBitmapChangeListener;
 import iamutkarshtiwari.github.io.ananas.editimage.utils.BitmapUtils;
 import iamutkarshtiwari.github.io.ananas.editimage.utils.PermissionUtils;
 import iamutkarshtiwari.github.io.ananas.editimage.view.BrightnessView;
@@ -55,8 +57,6 @@ import iamutkarshtiwari.github.io.ananas.editimage.view.CustomPaintView;
 import iamutkarshtiwari.github.io.ananas.editimage.view.CustomViewPager;
 import iamutkarshtiwari.github.io.ananas.editimage.view.RotateImageView;
 import iamutkarshtiwari.github.io.ananas.editimage.view.SaturationView;
-import iamutkarshtiwari.github.io.ananas.editimage.view.StickerView;
-import iamutkarshtiwari.github.io.ananas.editimage.view.TextStickerView;
 import iamutkarshtiwari.github.io.ananas.editimage.view.imagezoom.ImageViewTouch;
 import iamutkarshtiwari.github.io.ananas.editimage.view.imagezoom.ImageViewTouchBase;
 import iamutkarshtiwari.github.io.ananas.editimage.widget.RedoUndoController;
@@ -78,7 +78,9 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
     public static final int MODE_BEAUTY = 7;
     public static final int MODE_BRIGHTNESS = 8;
     public static final int MODE_SATURATION = 9;
+    public static HashMap<String, Typeface> fonts;
     private static final int PERMISSIONS_REQUEST_CODE = 110;
+
     private final String[] requiredPermissions = new String[]{
             Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.WRITE_EXTERNAL_STORAGE
@@ -88,10 +90,8 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
     public String sourceFilePath;
     public String outputFilePath;
     public String editorTitle;
-    public StickerView stickerView;
     public CropImageView cropPanel;
     public ImageViewTouch mainImage;
-    public TextStickerView textStickerView;
     public int mode = MODE_NONE;
     protected boolean isBeenSaved = false;
     protected boolean isPortraitForced = false;
@@ -118,7 +118,6 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
     private TextView titleView;
     private MainMenuFragment mainMenuFragment;
     private RedoUndoController redoUndoController;
-    private OnMainBitmapChangeListener onMainBitmapChangeListener;
     private CompositeDisposable compositeDisposable = new CompositeDisposable();
     private int backResId;
 
@@ -221,10 +220,8 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
             backBtn.setImageResource(backResId);
         }
 
-        stickerView = findViewById(R.id.sticker_panel);
         cropPanel = findViewById(R.id.crop_panel);
         rotatePanel = findViewById(R.id.rotate_panel);
-        textStickerView = findViewById(R.id.text_sticker_panel);
         paintView = findViewById(R.id.custom_paint_view);
         brightnessView = findViewById(R.id.brightness_panel);
         saturationView = findViewById(R.id.contrast_panel);
@@ -248,8 +245,7 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
         beautyFragment = BeautyFragment.newInstance();
         brightnessFragment = BrightnessFragment.newInstance();
         saturationFragment = SaturationFragment.newInstance();
-        addTextFragment = AddTextFragment.newInstance();
-        setOnMainBitmapChangeListener(addTextFragment);
+        addTextFragment = AddTextFragment.newInstance(fonts);
 
         bottomGallery.setAdapter(bottomGalleryAdapter);
 
@@ -270,10 +266,6 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
         } else {
             loadImageFromUri(sourceUri);
         }
-    }
-
-    private void setOnMainBitmapChangeListener(OnMainBitmapChangeListener listener) {
-        onMainBitmapChangeListener = listener;
     }
 
     @Override
@@ -348,7 +340,9 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
                 } else {
                     AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
                     alertDialogBuilder.setMessage(R.string.iamutkarshtiwari_github_io_ananas_exit_without_save)
-                            .setCancelable(false).setPositiveButton(R.string.iamutkarshtiwari_github_io_ananas_confirm, (dialog, id) -> finish()).setNegativeButton(R.string.iamutkarshtiwari_github_io_ananas_cancel, (dialog, id) -> dialog.cancel());
+                            .setCancelable(false)
+                            .setPositiveButton(R.string.iamutkarshtiwari_github_io_ananas_confirm, (dialog, id) -> finish())
+                            .setNegativeButton(R.string.iamutkarshtiwari_github_io_ananas_cancel, (dialog, id) -> dialog.cancel());
 
                     AlertDialog alertDialog = alertDialogBuilder.create();
                     alertDialog.show();
@@ -369,10 +363,6 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
             mainBitmap = newBit;
             mainImage.setImageBitmap(mainBitmap);
             mainImage.setDisplayType(ImageViewTouchBase.DisplayType.FIT_TO_SCREEN);
-
-            if (mode == MODE_TEXT) {
-                onMainBitmapChangeListener.onMainBitmapChange();
-            }
         }
     }
 
