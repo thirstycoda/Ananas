@@ -47,12 +47,10 @@ import iamutkarshtiwari.github.io.ananas.editimage.interfaces.OnMainBitmapChange
 import iamutkarshtiwari.github.io.ananas.editimage.utils.BitmapUtils;
 import iamutkarshtiwari.github.io.ananas.editimage.utils.PermissionUtils;
 import iamutkarshtiwari.github.io.ananas.editimage.view.BrightnessView;
-import iamutkarshtiwari.github.io.ananas.editimage.view.CustomPaintView;
 import iamutkarshtiwari.github.io.ananas.editimage.view.CustomViewPager;
 import iamutkarshtiwari.github.io.ananas.editimage.view.RotateImageView;
 import iamutkarshtiwari.github.io.ananas.editimage.view.SaturationView;
 import iamutkarshtiwari.github.io.ananas.editimage.view.StickerView;
-import iamutkarshtiwari.github.io.ananas.editimage.view.TextStickerView;
 import iamutkarshtiwari.github.io.ananas.editimage.view.imagezoom.ImageViewTouch;
 import iamutkarshtiwari.github.io.ananas.editimage.view.imagezoom.ImageViewTouchBase;
 import iamutkarshtiwari.github.io.ananas.editimage.widget.RedoUndoController;
