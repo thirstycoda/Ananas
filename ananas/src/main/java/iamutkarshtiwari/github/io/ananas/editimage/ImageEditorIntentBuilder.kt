@@ -64,11 +64,6 @@ class ImageEditorIntentBuilder @JvmOverloads constructor(private val context: Co
         return this
     }
 
-    fun withStickerFeature(): ImageEditorIntentBuilder {
-        intent.putExtra(STICKER_FEATURE, true)
-        return this
-    }
-
     fun withEditorTitle(title:String): ImageEditorIntentBuilder {
         intent.putExtra(EDITOR_TITLE, title)
         return this
@@ -133,7 +128,6 @@ class ImageEditorIntentBuilder @JvmOverloads constructor(private val context: Co
         const val BRIGHTNESS_FEATURE = "brightness_feature"
         const val SATURATION_FEATURE = "saturation_feature"
         const val BEAUTY_FEATURE = "beauty_feature"
-        const val STICKER_FEATURE = "sticker_feature"
 
         const val SOURCE_URI = "source_uri"
         const val SOURCE_PATH = "source_path"

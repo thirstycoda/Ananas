@@ -5,7 +5,6 @@
     <string name="iamutkarshtiwari_github_io_ananas_done">DONE</string>
     <string name="iamutkarshtiwari_github_io_ananas_apply">APPLY</string>
 
-    <string name="iamutkarshtiwari_github_io_ananas_stickers">Stickers</string>
     <string name="iamutkarshtiwari_github_io_ananas_filter">Filters</string>
     <string name="iamutkarshtiwari_github_io_ananas_crop">Crop</string>
     <string name="iamutkarshtiwari_github_io_ananas_rotate">Rotate</string>
@@ -64,33 +63,6 @@
         <item>filter_12</item>
     </string-array>
 
-    <string-array translatable="false" name="iamutkarshtiwari_github_io_ananas_types">
-        <item>type1</item>
-        <item>type2</item>
-        <item>type3</item>
-        <item>type4</item>
-        <item>type5</item>
-        <item>type6</item>
-    </string-array>
-
-    <string-array name="iamutkarshtiwari_github_io_ananas_type_names">
-        <item>Type 1</item>
-        <item>Type 2</item>
-        <item>Type 3</item>
-        <item>Type 4</item>
-        <item>Type 5</item>
-        <item>Type 6</item>
-    </string-array>
-
-    <integer-array translatable="false" name="iamutkarshtiwari_github_io_ananas_type_count">
-        <item>5</item>
-        <item>5</item>
-        <item>5</item>
-        <item>5</item>
-        <item>3</item>
-        <item>5</item>
-    </integer-array>
-
     <string name="iamutkarshtiwari_github_io_ananas_exit_without_save">The edited image is not saved. Do you want to exit? </string>
     <string name="iamutkarshtiwari_github_io_ananas_confirm">Confirm</string>
     <string name="iamutkarshtiwari_github_io_ananas_cancel">Cancel</string>
@@ -98,7 +70,4 @@
     <string name="iamutkarshtiwari_github_io_ananas_beauty">Beauty</string>
     <string name="iamutkarshtiwari_github_io_ananas_smooth">Smoothness</string>
     <string name="iamutkarshtiwari_github_io_ananas_white_skin">Skin Tone</string>
-
-    <item type="id" translatable="false" name="iamutkarshtiwari_github_io_ananas_TAG_STICKERS_PATH" />
-    <item type="id" translatable="false" name="iamutkarshtiwari_github_io_ananas_TAG_STICKERS_COUNT" />
 </resources>

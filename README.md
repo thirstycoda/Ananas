@@ -116,7 +116,6 @@ Use the following code to build and launch the photo editor:
          .withBrightnessFeature()
          .withSaturationFeature()
          .withBeautyFeature()
-         .withStickerFeature()
          .forcePortrait(true)  // Add this to force portrait mode (It's set to false by default)
          .setSupportActionBarVisibility(false) // To hide app's default action bar
          .build();

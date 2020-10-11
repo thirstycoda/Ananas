@@ -126,13 +126,6 @@
             android:layout_gravity="center"
             android:visibility="gone" />
 
-        <iamutkarshtiwari.github.io.ananas.editimage.view.StickerView
-            android:id="@+id/sticker_panel"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_gravity="center"
-            android:visibility="gone" />
-
         <com.theartofdev.edmodo.cropper.CropImageView
             android:id="@+id/crop_panel"
             android:layout_width="match_parent"

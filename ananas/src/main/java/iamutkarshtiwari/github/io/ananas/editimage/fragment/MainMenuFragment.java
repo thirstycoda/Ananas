@@ -17,7 +17,6 @@ public class MainMenuFragment extends BaseEditFragment implements View.OnClickLi
 
     private View mainView;
 
-    private View stickerBtn;
     private View filterButton;
     private View cropBtn;
     private View rotateBtn;
@@ -50,7 +49,6 @@ public class MainMenuFragment extends BaseEditFragment implements View.OnClickLi
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        stickerBtn = mainView.findViewById(R.id.btn_stickers);
         filterButton = mainView.findViewById(R.id.btn_filter);
         cropBtn = mainView.findViewById(R.id.btn_crop);
         rotateBtn = mainView.findViewById(R.id.btn_rotate);
@@ -59,11 +57,6 @@ public class MainMenuFragment extends BaseEditFragment implements View.OnClickLi
         mBeautyBtn = mainView.findViewById(R.id.btn_beauty);
         mBrightnessBtn = mainView.findViewById(R.id.btn_brightness);
         mSaturationBtn = mainView.findViewById(R.id.btn_contrast);
-
-        if (intentBundle.getBoolean(ImageEditorIntentBuilder.STICKER_FEATURE, false)) {
-            stickerBtn.setVisibility(View.VISIBLE);
-            stickerBtn.setOnClickListener(this);
-        }
 
         if (intentBundle.getBoolean(ImageEditorIntentBuilder.FILTER_FEATURE, false)) {
             filterButton.setVisibility(View.VISIBLE);
@@ -118,9 +111,7 @@ public class MainMenuFragment extends BaseEditFragment implements View.OnClickLi
 
     @Override
     public void onClick(View v) {
-        if (v == stickerBtn) {
-            onStickClick();
-        } else if (v == filterButton) {
+        if (v == filterButton) {
             onFilterClick();
         } else if (v == cropBtn) {
             onCropClick();
@@ -137,11 +128,6 @@ public class MainMenuFragment extends BaseEditFragment implements View.OnClickLi
         } else if (v == mSaturationBtn) {
             onContrastClick();
         }
-    }
-
-    private void onStickClick() {
-        activity.bottomGallery.setCurrentItem(StickerFragment.INDEX);
-        activity.stickerFragment.onShow();
     }
 
     private void onFilterClick() {
