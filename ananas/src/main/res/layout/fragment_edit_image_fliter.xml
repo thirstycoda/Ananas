@@ -4,12 +4,13 @@
 
     <ImageView
         android:id="@+id/back_to_main"
-        android:layout_width="40dp"
-        android:layout_marginLeft="16dp"
-        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
         android:layout_gravity="center_vertical"
+        android:paddingHorizontal="16dp"
+        android:scaleType="center"
         android:src="@drawable/image_edit_back" />
 
     <androidx.recyclerview.widget.RecyclerView
