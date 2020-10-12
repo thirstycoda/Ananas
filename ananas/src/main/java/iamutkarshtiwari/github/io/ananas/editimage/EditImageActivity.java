@@ -328,7 +328,7 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
                 if (canAutoExit()) {
                     onSaveTaskDone();
                 } else {
-                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this, R.style.Theme_MaterialComponents_Light_Dialog_Alert);
                     alertDialogBuilder.setMessage(R.string.iamutkarshtiwari_github_io_ananas_exit_without_save)
                             .setCancelable(false)
                             .setPositiveButton(R.string.iamutkarshtiwari_github_io_ananas_confirm, (dialog, id) -> finish())
