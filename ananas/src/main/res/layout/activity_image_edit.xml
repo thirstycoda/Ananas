@@ -13,9 +13,10 @@
         <ImageView
             android:id="@+id/back_btn"
             android:layout_width="wrap_content"
-            android:layout_height="55dp"
-            android:layout_gravity="left|center_vertical"
-            android:paddingHorizontal="8dp"
+            android:layout_height="match_parent"
+            android:paddingLeft="16dp"
+            android:paddingRight="8dp"
+            android:scaleType="center"
             android:src="@drawable/back_arrow" />
 
         <TextView

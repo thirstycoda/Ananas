@@ -22,7 +22,7 @@ public class TextStickerItem {
     private static final int HELP_BOX_PAD = 25;
     private static final int BORDER_STROKE_WIDTH = 8;
 
-    private static final int BUTTON_WIDTH = Constants.STICKER_BTN_HALF_SIZE;
+    private static final int BUTTON_WIDTH = 30;
 
     private String text;
     private Typeface font;
