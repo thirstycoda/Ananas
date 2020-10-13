@@ -269,6 +269,7 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
                 // If request is cancelled, the result arrays are empty.
                 if (!(grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+                    setResult(RESULT_CANCELED);
                     finish();
                 }
                 break;
@@ -331,7 +332,10 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
                     AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
                     alertDialogBuilder.setMessage(R.string.iamutkarshtiwari_github_io_ananas_exit_without_save)
                             .setCancelable(false)
-                            .setPositiveButton(R.string.iamutkarshtiwari_github_io_ananas_confirm, (dialog, id) -> finish())
+                            .setPositiveButton(R.string.iamutkarshtiwari_github_io_ananas_confirm, (dialog, id) -> {
+                                setResult(RESULT_CANCELED);
+                                finish();
+                            })
                             .setNegativeButton(R.string.iamutkarshtiwari_github_io_ananas_cancel, (dialog, id) -> dialog.cancel());
 
                     AlertDialog alertDialog = alertDialogBuilder.create();
