@@ -32,6 +32,8 @@ import com.theartofdev.edmodo.cropper.CropImageView;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.List;
 
 import java.util.HashMap;
@@ -257,7 +259,21 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
         if (!TextUtils.isEmpty(sourceFilePath)) {
             loadImageFromFile(sourceFilePath);
         } else {
-            loadImageFromUri(sourceUri);
+            URL url = null;
+
+            if (sourceUri.getScheme().startsWith("http")) {
+                try {
+                    url = new URL(sourceUri.toString());
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            if (url != null) {
+                loadImageFromUrl(url);
+            } else {
+                loadImageFromUri(sourceUri);
+            }
         }
     }
 
@@ -435,6 +451,19 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
         compositeDisposable.add(loadImageDisposable);
     }
 
+    private void loadImageFromUrl(URL url) {
+        compositeDisposable.clear();
+
+        Disposable loadImageDisposable = loadImage(url)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe(subscriber -> loadingDialog.show())
+                .doFinally(() -> loadingDialog.dismiss())
+                .subscribe(processedBitmap -> changeMainBitmap(processedBitmap, false), e -> showToast(R.string.iamutkarshtiwari_github_io_ananas_load_error));
+
+        compositeDisposable.add(loadImageDisposable);
+    }
+
     private void loadImageFromFile(String filePath) {
         compositeDisposable.clear();
 
@@ -456,6 +485,10 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
     private Single<Bitmap> loadImage(Uri uri) {
         return Single.fromCallable(() -> BitmapUtils.decodeSampledBitmap(this, uri,
                 imageWidth, imageHeight));
+    }
+
+    private Single<Bitmap> loadImage(URL url) {
+        return Single.fromCallable(() -> BitmapUtils.getRemoteBitmap(url, imageWidth, imageHeight));
     }
 
     private void showToast(@StringRes int resId) {

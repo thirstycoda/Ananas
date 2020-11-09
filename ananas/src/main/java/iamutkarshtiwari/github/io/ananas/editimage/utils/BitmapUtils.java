@@ -44,6 +44,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.URL;
 
 import javax.microedition.khronos.egl.EGL10;
 import javax.microedition.khronos.egl.EGLConfig;
@@ -363,6 +364,16 @@ public class BitmapUtils {
         options.inPreferredConfig = Bitmap.Config.RGB_565;
         options.inJustDecodeBounds = false;
         return BitmapFactory.decodeFile(filePath, options);
+    }
+
+    public static Bitmap getRemoteBitmap(URL url, int reqWidth, int reqHeight) throws IOException {
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = true;
+        options.inSampleSize = calculateInSampleSize(options, reqWidth, reqHeight);
+        options.inPreferredConfig = Bitmap.Config.RGB_565;
+        options.inJustDecodeBounds = false;
+
+        return BitmapFactory.decodeStream(url.openConnection().getInputStream(), EMPTY_RECT, options);
     }
 
     public static int calculateInSampleSize(BitmapFactory.Options options, int reqWidth, int reqHeight) {
