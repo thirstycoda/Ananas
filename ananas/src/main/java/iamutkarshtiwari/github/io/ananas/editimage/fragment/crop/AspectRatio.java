@@ -4,15 +4,19 @@ public class AspectRatio implements java.io.Serializable {
     private final String name;
     private final int x;
     private final int y;
+    private final boolean isCircle;
 
     public AspectRatio(String name) {
         this(name, 0, 0);
     }
 
-    public AspectRatio(String name, int x, int y) {
+    public AspectRatio(String name, int x, int y) { this(name, 0, 0, false); }
+
+    public AspectRatio(String name, int x, int y, boolean isCircle) {
         this.name = name;
         this.x = x;
         this.y = y;
+        this.isCircle = isCircle;
     }
 
     public String getName() {
@@ -33,5 +37,9 @@ public class AspectRatio implements java.io.Serializable {
 
     public boolean isFitImage() {
         return x == -1 && y == -1;
+    }
+
+    public boolean isCircle() {
+        return isCircle;
     }
 }

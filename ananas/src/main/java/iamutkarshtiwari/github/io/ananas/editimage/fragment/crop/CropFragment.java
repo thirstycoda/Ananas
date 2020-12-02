@@ -149,6 +149,10 @@ public class CropFragment extends BaseEditFragment {
             } else {
                 cropPanel.setAspectRatio(aspectRatio.getX(), aspectRatio.getY());
             }
+
+            cropPanel.setCropShape(aspectRatio.isCircle() ?
+                    CropImageView.CropShape.OVAL :
+                    CropImageView.CropShape.RECTANGLE);
         }
     }
 
@@ -221,7 +225,7 @@ public class CropFragment extends BaseEditFragment {
 
     public void applyCropImage() {
         RectF cropRect = cropPanel.getCropWindowRect();
-        float cropAspectRatio = (float) (cropRect.right - cropRect.left) / (cropRect.bottom - cropRect.top);
+        float cropAspectRatio = (cropRect.right - cropRect.left) / (cropRect.bottom - cropRect.top);
 
         if (aspectRatioMin != NO_ASPECT_RATIO_LIMIT &&
                 cropAspectRatio < aspectRatioMin) {
