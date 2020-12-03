@@ -141,19 +141,23 @@ public class CropFragment extends BaseEditFragment {
             selectedTextView = currentTextView;
 
             AspectRatio aspectRatio = (AspectRatio) currentTextView.getTag();
-            if (aspectRatio.isFree()) {
-                cropPanel.setFixedAspectRatio(false);
-            } else if (aspectRatio.isFitImage()) {
-                Bitmap currentBmp = ensureEditActivity().getMainBit();
-                cropPanel.setAspectRatio(currentBmp.getWidth(), currentBmp.getHeight());
-            } else {
-                cropPanel.setAspectRatio(aspectRatio.getX(), aspectRatio.getY());
-            }
-
-            cropPanel.setCropShape(aspectRatio.isCircle() ?
-                    CropImageView.CropShape.OVAL :
-                    CropImageView.CropShape.RECTANGLE);
+            setCropFrame(aspectRatio);
         }
+    }
+
+    private void setCropFrame(AspectRatio aspectRatio) {
+        if (aspectRatio.isFree()) {
+            cropPanel.setFixedAspectRatio(false);
+        } else if (aspectRatio.isFitImage()) {
+            Bitmap currentBmp = ensureEditActivity().getMainBit();
+            cropPanel.setAspectRatio(currentBmp.getWidth(), currentBmp.getHeight());
+        } else {
+            cropPanel.setAspectRatio(aspectRatio.getX(), aspectRatio.getY());
+        }
+
+        cropPanel.setCropShape(aspectRatio.isCircle() ?
+                CropImageView.CropShape.OVAL :
+                CropImageView.CropShape.RECTANGLE);
     }
 
     private void toggleButtonStatus(TextView view, boolean isActive) {
@@ -195,7 +199,7 @@ public class CropFragment extends BaseEditFragment {
 
         activity.bannerFlipper.showNext();
         cropPanel.setImageBitmap(activity.getMainBit());
-        cropPanel.setFixedAspectRatio(false);
+        setCropFrame(aspectRatios.get(0));
     }
 
 
