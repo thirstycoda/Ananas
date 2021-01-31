@@ -386,7 +386,7 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
 
         returnIntent.putExtra(ImageEditorIntentBuilder.SOURCE_PATH, sourceFilePath);
         returnIntent.putExtra(ImageEditorIntentBuilder.OUTPUT_PATH, outputFilePath);
-        returnIntent.putExtra(IS_IMAGE_EDITED, numberOfOperations > 0);
+        returnIntent.putExtra(IS_IMAGE_EDITED, needSave());
 
         setResult(RESULT_OK, returnIntent);
         finish();
