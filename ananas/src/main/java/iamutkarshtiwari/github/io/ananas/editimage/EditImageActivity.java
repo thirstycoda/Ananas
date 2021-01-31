@@ -393,7 +393,7 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
     }
 
     protected void doSaveImage() {
-        if (numberOfOperations <= 0)
+        if (!needSave())
             return;
 
         float aspectRatio = (float) mainBitmap.getWidth() / mainBitmap.getHeight();
@@ -597,12 +597,17 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
     private final class SaveBtnClick implements OnClickListener {
         @Override
         public void onClick(View v) {
-            if (numberOfOperations == 0) {
-                onSaveTaskDone();
-            } else {
+            if (needSave()) {
                 doSaveImage();
+            } else {
+                onSaveTaskDone();
             }
         }
+    }
+
+    private boolean needSave() {
+        return numberOfOperations > 0 ||
+                (sourceUri != null && sourceUri.getScheme().startsWith("http"));
     }
 
     private final class ApplyBtnClick implements OnClickListener {
