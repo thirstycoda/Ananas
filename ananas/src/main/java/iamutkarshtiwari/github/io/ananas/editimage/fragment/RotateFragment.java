@@ -32,9 +32,8 @@ public class RotateFragment extends BaseEditFragment implements OnClickListener 
 
     private View mainView;
     private RotateImageView rotatePanel;
-    private Dialog loadingDialog;
 
-    private CompositeDisposable compositeDisposable = new CompositeDisposable();
+    private final CompositeDisposable compositeDisposable = new CompositeDisposable();
 
     public static RotateFragment newInstance() {
         return new RotateFragment();
@@ -49,8 +48,6 @@ public class RotateFragment extends BaseEditFragment implements OnClickListener 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         mainView = inflater.inflate(R.layout.fragment_edit_image_rotate, null);
-        loadingDialog = BaseActivity.getLoadingDialog(getActivity(), R.string.iamutkarshtiwari_github_io_ananas_loading,
-                false);
         return mainView;
     }
 
@@ -135,8 +132,6 @@ public class RotateFragment extends BaseEditFragment implements OnClickListener 
             Disposable applyRotationDisposable = applyRotation(activity.getMainBit())
                     .subscribeOn(Schedulers.computation())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .doOnSubscribe(subscriber -> loadingDialog.show())
-                    .doFinally(() -> loadingDialog.dismiss())
                     .subscribe(processedBitmap -> {
                         if (processedBitmap == null)
                             return;

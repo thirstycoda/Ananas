@@ -30,9 +30,8 @@ public class FilterListFragment extends BaseEditFragment {
     private View mainView;
     private Bitmap filterBitmap;
     private Bitmap currentBitmap;
-    private Dialog loadingDialog;
 
-    private CompositeDisposable compositeDisposable = new CompositeDisposable();
+    private final CompositeDisposable compositeDisposable = new CompositeDisposable();
 
     public static FilterListFragment newInstance() {
         return new FilterListFragment();
@@ -47,8 +46,6 @@ public class FilterListFragment extends BaseEditFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         mainView = inflater.inflate(R.layout.fragment_edit_image_fliter, null);
-        loadingDialog = BaseActivity.getLoadingDialog(getActivity(), R.string.iamutkarshtiwari_github_io_ananas_loading,
-                false);
         return mainView;
     }
 
@@ -128,8 +125,6 @@ public class FilterListFragment extends BaseEditFragment {
         Disposable applyFilterDisposable = applyFilter(filterIndex)
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnSubscribe(subscriber -> loadingDialog.show())
-                .doFinally(() -> loadingDialog.dismiss())
                 .subscribe(
                         this::updatePreviewWithFilter,
                         e -> showSaveErrorToast()

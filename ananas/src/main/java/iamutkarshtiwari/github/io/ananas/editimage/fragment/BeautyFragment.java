@@ -26,18 +26,16 @@ public class BeautyFragment extends BaseEditFragment implements SeekBar.OnSeekBa
     public static final int INDEX = ModuleConfig.INDEX_BEAUTY;
 
     private View mainView;
-    private Dialog dialog;
 
     private SeekBar smoothValueBar;
     private SeekBar whiteValueBar;
 
-    private CompositeDisposable disposable = new CompositeDisposable();
+    private final CompositeDisposable disposable = new CompositeDisposable();
     private Disposable beautyDisposable;
     private Bitmap finalBmp;
 
     private int smooth = 0;
     private int whiteSkin = 0;
-
 
     public static BeautyFragment newInstance() {
         return new BeautyFragment();
@@ -55,8 +53,6 @@ public class BeautyFragment extends BaseEditFragment implements SeekBar.OnSeekBa
 
         smoothValueBar = mainView.findViewById(R.id.smooth_value_bar);
         whiteValueBar = mainView.findViewById(R.id.white_skin_value_bar);
-        dialog = BaseActivity.getLoadingDialog(getActivity(), R.string.iamutkarshtiwari_github_io_ananas_loading,
-                false);
         return mainView;
     }
 
@@ -98,8 +94,6 @@ public class BeautyFragment extends BaseEditFragment implements SeekBar.OnSeekBa
         beautyDisposable = beautify(smooth, whiteSkin)
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnSubscribe(subscriber -> dialog.show())
-                .doFinally(() -> dialog.dismiss())
                 .subscribe(bitmap -> {
                     if (bitmap == null)
                         return;

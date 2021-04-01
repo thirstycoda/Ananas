@@ -49,14 +49,13 @@ public class PaintFragment extends BaseEditFragment implements View.OnClickListe
 
     private BrushConfigDialog brushConfigDialog;
     private EraserConfigDialog eraserConfigDialog;
-    private Dialog loadingDialog;
 
     private float brushSize = INITIAL_WIDTH;
     private float eraserSize = INITIAL_WIDTH;
     private float brushAlpha = MAX_ALPHA;
     private int brushColor = Color.WHITE;
 
-    private CompositeDisposable compositeDisposable = new CompositeDisposable();
+    private final CompositeDisposable compositeDisposable = new CompositeDisposable();
 
     public static PaintFragment newInstance() {
         return new PaintFragment();
@@ -73,8 +72,6 @@ public class PaintFragment extends BaseEditFragment implements View.OnClickListe
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        loadingDialog = BaseActivity.getLoadingDialog(getActivity(), R.string.iamutkarshtiwari_github_io_ananas_loading,
-                false);
         customPaintView = ensureEditActivity().findViewById(R.id.custom_paint_view);
         backToMenu = mainView.findViewById(R.id.back_to_main);
         eraserView = mainView.findViewById(R.id.eraser_btn);
@@ -185,8 +182,6 @@ public class PaintFragment extends BaseEditFragment implements View.OnClickListe
                 })
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnSubscribe(subscriber -> loadingDialog.show())
-                .doFinally(() -> loadingDialog.dismiss())
                 .subscribe(bitmap -> {
                     customPaintView.reset();
                     activity.changeMainBitmap(bitmap, true);
