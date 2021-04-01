@@ -10,7 +10,7 @@ public class AspectRatio implements java.io.Serializable {
         this(name, 0, 0);
     }
 
-    public AspectRatio(String name, int x, int y) { this(name, 0, 0, false); }
+    public AspectRatio(String name, int x, int y) { this(name, x, y, false); }
 
     public AspectRatio(String name, int x, int y, boolean isCircle) {
         this.name = name;

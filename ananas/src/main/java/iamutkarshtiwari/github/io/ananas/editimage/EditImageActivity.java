@@ -119,8 +119,12 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
     private int backResId;
 
     private List<AspectRatio> aspectRatios;
+    private int aspectRatioMinX;
+    private int aspectRatioMinY;
     private float aspectRatioMin;
     private String aspectRatioMinMsg;
+    private int aspectRatioMaxX;
+    private int aspectRatioMaxY;
     private float aspectRatioMax;
     private String aspectRatioMaxMsg;
 
@@ -174,10 +178,20 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
         backResId = getIntent().getIntExtra(ImageEditorIntentBuilder.BACK_RESOURCE_ID, 0);
 
         aspectRatios = (List<AspectRatio>) getIntent().getSerializableExtra(ImageEditorIntentBuilder.ASPECT_RATIOS);
-        aspectRatioMin = getIntent().getFloatExtra(ImageEditorIntentBuilder.ASPECT_RATIO_MIN, CropFragment.NO_ASPECT_RATIO_LIMIT);
+        aspectRatioMinX = getIntent().getIntExtra(ImageEditorIntentBuilder.ASPECT_RATIO_MIN_X, 0);
+        aspectRatioMinY = getIntent().getIntExtra(ImageEditorIntentBuilder.ASPECT_RATIO_MIN_Y, 0);
         aspectRatioMinMsg = getIntent().getStringExtra(ImageEditorIntentBuilder.ASPECT_RATIO_MIN_MSG);
-        aspectRatioMax = getIntent().getFloatExtra(ImageEditorIntentBuilder.ASPECT_RATIO_MAX, CropFragment.NO_ASPECT_RATIO_LIMIT);
+        aspectRatioMaxX = getIntent().getIntExtra(ImageEditorIntentBuilder.ASPECT_RATIO_MAX_X, 0);
+        aspectRatioMaxY = getIntent().getIntExtra(ImageEditorIntentBuilder.ASPECT_RATIO_MAX_Y, 0);
         aspectRatioMaxMsg = getIntent().getStringExtra(ImageEditorIntentBuilder.ASPECT_RATIO_MAX_MSG);
+
+        if (aspectRatioMinX > 0 && aspectRatioMinY > 0) {
+            aspectRatioMin = (float) aspectRatioMinX/aspectRatioMinY;
+        }
+
+        if (aspectRatioMaxX > 0 && aspectRatioMaxY > 0) {
+            aspectRatioMax = (float) aspectRatioMaxX/aspectRatioMaxY;
+        }
     }
 
     private void initView() {
@@ -232,8 +246,8 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
 
         cropFragment = CropFragment.newInstance();
         cropFragment.setAspectRatios(aspectRatios);
-        cropFragment.setMinimumAspectRatio(aspectRatioMin, aspectRatioMinMsg);
-        cropFragment.setMaximumAspectRatio(aspectRatioMax, aspectRatioMaxMsg);
+        cropFragment.setMinimumAspectRatio(aspectRatioMinX, aspectRatioMinY, aspectRatioMinMsg);
+        cropFragment.setMaximumAspectRatio(aspectRatioMaxX, aspectRatioMaxY, aspectRatioMaxMsg);
 
         rotateFragment = RotateFragment.newInstance();
         paintFragment = PaintFragment.newInstance();
@@ -398,14 +412,12 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
 
         float aspectRatio = (float) mainBitmap.getWidth() / mainBitmap.getHeight();
 
-        if (aspectRatioMin != CropFragment.NO_ASPECT_RATIO_LIMIT &&
-                aspectRatio < aspectRatioMin) {
+        if (aspectRatio < aspectRatioMin) {
             Toast.makeText(this, aspectRatioMinMsg, Toast.LENGTH_SHORT).show();
             return;
         }
 
-        if (aspectRatioMax != CropFragment.NO_ASPECT_RATIO_LIMIT &&
-                aspectRatio > aspectRatioMax) {
+        if (aspectRatioMax > 0 && aspectRatio > aspectRatioMax) {
             Toast.makeText(this, aspectRatioMaxMsg, Toast.LENGTH_SHORT).show();
             return;
         }
@@ -446,7 +458,7 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe(subscriber -> loadingDialog.show())
                 .doFinally(() -> loadingDialog.dismiss())
-                .subscribe(processedBitmap -> changeMainBitmap(processedBitmap, false), e -> showToast(R.string.iamutkarshtiwari_github_io_ananas_load_error));
+                .subscribe(processedBitmap -> onFirstLoad(processedBitmap), e -> showToast(R.string.iamutkarshtiwari_github_io_ananas_load_error));
 
         compositeDisposable.add(loadImageDisposable);
     }
@@ -459,7 +471,7 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe(subscriber -> loadingDialog.show())
                 .doFinally(() -> loadingDialog.dismiss())
-                .subscribe(processedBitmap -> changeMainBitmap(processedBitmap, false), e -> showToast(R.string.iamutkarshtiwari_github_io_ananas_load_error));
+                .subscribe(processedBitmap -> onFirstLoad(processedBitmap), e -> showToast(R.string.iamutkarshtiwari_github_io_ananas_load_error));
 
         compositeDisposable.add(loadImageDisposable);
     }
@@ -472,9 +484,20 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe(subscriber -> loadingDialog.show())
                 .doFinally(() -> loadingDialog.dismiss())
-                .subscribe(processedBitmap -> changeMainBitmap(processedBitmap, false), e -> showToast(R.string.iamutkarshtiwari_github_io_ananas_load_error));
+                .subscribe(processedBitmap -> onFirstLoad(processedBitmap), e -> showToast(R.string.iamutkarshtiwari_github_io_ananas_load_error));
 
         compositeDisposable.add(loadImageDisposable);
+    }
+
+    private void onFirstLoad(Bitmap processedBitmap) {
+        changeMainBitmap(processedBitmap, false);
+
+        float aspectRatio = (float) mainBitmap.getWidth() / mainBitmap.getHeight();
+
+        if (aspectRatio < aspectRatioMin || (aspectRatioMax > 0 && aspectRatio > aspectRatioMax)) {
+            bottomGallery.setCurrentItem(CropFragment.INDEX);
+            cropFragment.onShow();
+        }
     }
 
     private Single<Bitmap> loadImage(String filePath) {

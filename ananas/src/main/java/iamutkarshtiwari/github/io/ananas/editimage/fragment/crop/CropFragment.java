@@ -36,7 +36,6 @@ import io.reactivex.disposables.CompositeDisposable;
 
 public class CropFragment extends BaseEditFragment {
     public static final int INDEX = ModuleConfig.INDEX_CROP;
-    public static final float NO_ASPECT_RATIO_LIMIT = -1;
 
     private static int SELECTED_COLOR = R.color.white;
     private static int UNSELECTED_COLOR = R.color.text_color_gray_3;
@@ -47,7 +46,11 @@ public class CropFragment extends BaseEditFragment {
     private OnLoadingDialogListener loadingDialogListener;
 
     private List<AspectRatio> aspectRatios;
+    private int aspectRatioMinX;
+    private int aspectRatioMinY;
     private float aspectRatioMin;
+    private int aspectRatioMaxX;
+    private int aspectRatioMaxY;
     private float aspectRatioMax;
     private String aspectRatioMinMsg;
     private String aspectRatioMaxMsg;
@@ -86,6 +89,17 @@ public class CropFragment extends BaseEditFragment {
         for (int i = 0; i < aspectRatios.size(); i++) {
             AspectRatio aspectRatio = aspectRatios.get(i);
 
+            if (aspectRatio.isFitImage()) {
+                Bitmap currentBmp = ensureEditActivity().getMainBit();
+                float imageAspectRatio = (float)currentBmp.getWidth()/currentBmp.getHeight();
+
+                if (imageAspectRatio < aspectRatioMin || (aspectRatioMax > 0 && imageAspectRatio > aspectRatioMax)) {
+                    // Don't offer this crop option if the aspect ratio of the image isn't within
+                    // the minimum and maximum
+                    continue;
+                }
+            }
+
             TextView text = new TextView(activity);
             toggleButtonStatus(text, false);
             text.setTextSize(15);
@@ -120,14 +134,18 @@ public class CropFragment extends BaseEditFragment {
         this.aspectRatios = aspectRatios;
     }
 
-    public void setMinimumAspectRatio(float minAspectRatio, String validationMessage) {
-        this.aspectRatioMin = minAspectRatio;
+    public void setMinimumAspectRatio(int aspectRatioX, int aspectRatioY, String validationMessage) {
+        this.aspectRatioMinX = aspectRatioX;
+        this.aspectRatioMinY = aspectRatioY;
         this.aspectRatioMinMsg = validationMessage;
+        this.aspectRatioMin = (float) aspectRatioX / aspectRatioY;
     }
 
-    public void setMaximumAspectRatio(float maxAspectRatio, String validationMessage) {
-        this.aspectRatioMax = maxAspectRatio;
+    public void setMaximumAspectRatio(int aspectRatioX, int aspectRatioY, String validationMessage) {
+        this.aspectRatioMaxX = aspectRatioX;
+        this.aspectRatioMaxY = aspectRatioY;
         this.aspectRatioMaxMsg = validationMessage;
+        this.aspectRatioMax = (float) aspectRatioX / aspectRatioY;
     }
 
     private final class CropRationClick implements OnClickListener {
@@ -199,6 +217,8 @@ public class CropFragment extends BaseEditFragment {
 
         activity.bannerFlipper.showNext();
         cropPanel.setImageBitmap(activity.getMainBit());
+        cropPanel.setAspectRatioMin(aspectRatioMinX, aspectRatioMinY);
+        cropPanel.setAspectRatioMax(aspectRatioMaxX, aspectRatioMaxY);
         setCropFrame(aspectRatios.get(0));
     }
 
@@ -209,7 +229,6 @@ public class CropFragment extends BaseEditFragment {
             backToMain();
         }
     }
-
 
     @Override
     public void backToMain() {
@@ -229,16 +248,14 @@ public class CropFragment extends BaseEditFragment {
 
     public void applyCropImage() {
         RectF cropRect = cropPanel.getCropWindowRect();
-        float cropAspectRatio = (cropRect.right - cropRect.left) / (cropRect.bottom - cropRect.top);
+        float cropAspectRatio = (cropRect.right - cropRect.left)/(cropRect.bottom - cropRect.top);
 
-        if (aspectRatioMin != NO_ASPECT_RATIO_LIMIT &&
-                cropAspectRatio < aspectRatioMin) {
+        if (cropAspectRatio < aspectRatioMin) {
             Toast.makeText(getContext(), aspectRatioMinMsg, Toast.LENGTH_SHORT).show();
             return;
         }
 
-        if (aspectRatioMax != NO_ASPECT_RATIO_LIMIT &&
-                cropAspectRatio > aspectRatioMax) {
+        if (aspectRatioMax > 0 && cropAspectRatio > aspectRatioMax) {
             Toast.makeText(getContext(), aspectRatioMaxMsg, Toast.LENGTH_SHORT).show();
             return;
         }

@@ -104,14 +104,16 @@ class ImageEditorIntentBuilder @JvmOverloads constructor(private val context: Co
         return this
     }
 
-    fun withMinimumAspectRatios(minimumAspectRatio: Float, validationMessage: String): ImageEditorIntentBuilder {
-        intent.putExtra(ASPECT_RATIO_MIN, minimumAspectRatio)
+    fun withMinimumAspectRatios(aspectRatioX: Int, aspectRatioY: Int, validationMessage: String): ImageEditorIntentBuilder {
+        intent.putExtra(ASPECT_RATIO_MIN_X, aspectRatioX)
+        intent.putExtra(ASPECT_RATIO_MIN_Y, aspectRatioY)
         intent.putExtra(ASPECT_RATIO_MIN_MSG, validationMessage)
         return this
     }
 
-    fun withMaximumAspectRatios(maximumAspectRatio: Float, validationMessage: String): ImageEditorIntentBuilder {
-        intent.putExtra(ASPECT_RATIO_MAX, maximumAspectRatio)
+    fun withMaximumAspectRatios(aspectRatioX: Int, aspectRatioY: Int, validationMessage: String): ImageEditorIntentBuilder {
+        intent.putExtra(ASPECT_RATIO_MAX_X, aspectRatioX)
+        intent.putExtra(ASPECT_RATIO_MAX_Y, aspectRatioY)
         intent.putExtra(ASPECT_RATIO_MAX_MSG, validationMessage)
         return this
     }
@@ -167,9 +169,11 @@ class ImageEditorIntentBuilder @JvmOverloads constructor(private val context: Co
         const val BACK_RESOURCE_ID = "back_res_id"
 
         const val ASPECT_RATIOS = "aspect_ratios"
-        const val ASPECT_RATIO_MIN = "aspect_ratio_min"
+        const val ASPECT_RATIO_MIN_X = "aspect_ratio_min_x"
+        const val ASPECT_RATIO_MIN_Y = "aspect_ratio_min_y"
         const val ASPECT_RATIO_MIN_MSG = "aspect_ratio_min_msg"
-        const val ASPECT_RATIO_MAX = "aspect_ratio_max"
+        const val ASPECT_RATIO_MAX_X = "aspect_ratio_max_x"
+        const val ASPECT_RATIO_MAX_Y = "aspect_ratio_max_y"
         const val ASPECT_RATIO_MAX_MSG = "aspect_ratio_max_msg"
     }
 }
