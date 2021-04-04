@@ -36,7 +36,7 @@ dependencies {
     implementation "androidx.appcompat:appcompat:${androidx_compat}"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${kotlin_version}"
     implementation "com.github.eltos:simpledialogfragment:${simple_dialog_fragment_version}"
-    implementation 'com.github.thirstycoda:Android-Image-Cropper:8502e11a0c'
+    implementation 'com.github.thirstycoda:Android-Image-Cropper:9b8a011e44'
     implementation "io.reactivex.rxjava2:rxjava:${rxjava_version}"
     implementation "io.reactivex.rxjava2:rxandroid:${rxandroid_version}"
     implementation "com.github.bumptech.glide:glide:${glide_version}"
