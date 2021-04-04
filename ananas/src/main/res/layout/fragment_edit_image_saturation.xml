@@ -19,6 +19,7 @@
         android:layout_margin="10dp"
         android:layout_marginLeft="8dp"
         android:layout_toRightOf="@id/back_to_main"
+        android:paddingVertical="16dp"
         android:max="2000"
         android:progress="2000"
         android:thumbTint="@color/white" />

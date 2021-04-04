@@ -1,6 +1,5 @@
 package iamutkarshtiwari.github.io.ananas.editimage.fragment;
 
-import android.app.Dialog;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,7 +8,6 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.SeekBar;
 
-import iamutkarshtiwari.github.io.ananas.BaseActivity;
 import iamutkarshtiwari.github.io.ananas.R;
 import iamutkarshtiwari.github.io.ananas.editimage.EditImageActivity;
 import iamutkarshtiwari.github.io.ananas.editimage.ModuleConfig;
@@ -52,7 +50,7 @@ public class BeautyFragment extends BaseEditFragment implements SeekBar.OnSeekBa
         mainView = inflater.inflate(R.layout.fragment_edit_image_beauty, null);
 
         smoothValueBar = mainView.findViewById(R.id.smooth_value_bar);
-        whiteValueBar = mainView.findViewById(R.id.white_skin_value_bar);
+        whiteValueBar = mainView.findViewById(R.id.skin_value_bar);
         return mainView;
     }
 

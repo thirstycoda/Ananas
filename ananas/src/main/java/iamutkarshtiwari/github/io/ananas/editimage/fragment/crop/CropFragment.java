@@ -1,9 +1,11 @@
 package iamutkarshtiwari.github.io.ananas.editimage.fragment.crop;
 
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.RectF;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -106,6 +108,9 @@ public class CropFragment extends BaseEditFragment {
             text.setAllCaps(true);
             text.setTypeface(text.getTypeface(), Typeface.BOLD);
             text.setText(aspectRatios.get(i).getName());
+
+            int verticalPadding = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 16, getResources().getDisplayMetrics());
+            text.setPadding(0, verticalPadding, 0, verticalPadding);
             ratioList.addView(text, params);
 
             if (i == 0) {
