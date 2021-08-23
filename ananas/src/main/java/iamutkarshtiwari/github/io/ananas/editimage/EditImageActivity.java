@@ -148,12 +148,6 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
     }
 
     @Override
-    protected void onPause() {
-        compositeDisposable.clear();
-        super.onPause();
-    }
-
-    @Override
     public void showLoadingDialog() {
         loadingDialog.show();
     }
