@@ -18,7 +18,8 @@
         tools:replace="android:label">
         <activity
             android:name="iamutkarshtiwari.github.io.imageeditorsample.MainActivity"
-            android:label="@string/ananas_image_editor_app_name">
+            android:label="@string/ananas_image_editor_app_name"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

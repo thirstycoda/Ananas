@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.github.dcendents.android-maven'
 
 android {
     compileSdkVersion project.ext.compileSdkVersion
@@ -27,7 +26,7 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation "androidx.appcompat:appcompat:${androidx_version}"
+    implementation "androidx.appcompat:appcompat:${androidx_compat}"
     androidTestImplementation "junit:junit:${junit_version}"
     androidTestImplementation "androidx.test:runner:$androidx_version"
     androidTestImplementation "androidx.test.espresso:espresso-core:${espresso_version}"

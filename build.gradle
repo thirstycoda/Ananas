@@ -40,8 +40,8 @@ allprojects {
     project.ext {
         buildToolsVersion="20.0.0"
         minSdkVersion=16
-        targetSdkVersion=27
-        compileSdkVersion=28
+        targetSdkVersion=33
+        compileSdkVersion=33
         ndkVersion="25.1.8937393"
     }
 }
