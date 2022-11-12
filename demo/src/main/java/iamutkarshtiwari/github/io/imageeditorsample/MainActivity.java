@@ -148,9 +148,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void selectFromAlbum() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && Build.VERSION.SDK_INT < Build.VERSION_CODES.S) {
             openAlbumWithPermissionsCheck();
-        } else {
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             openAlbum();
         }
     }

@@ -262,7 +262,7 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
 
         redoUndoController = new RedoUndoController(this, findViewById(R.id.redo_undo_panel));
 
-        if (!PermissionUtils.hasPermissions(this, requiredPermissions)) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S && !PermissionUtils.hasPermissions(this, requiredPermissions)) {
             ActivityCompat.requestPermissions(this, requiredPermissions, PERMISSIONS_REQUEST_CODE);
         }
 
