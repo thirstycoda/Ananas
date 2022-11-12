@@ -138,12 +138,6 @@ public class PaintFragment extends BaseEditFragment implements View.OnClickListe
         }
     }
 
-    @Override
-    public void onPause() {
-        compositeDisposable.clear();
-        super.onPause();
-    }
-
     public void backToMain() {
         activity.mode = EditImageActivity.MODE_NONE;
         activity.bottomGallery.setCurrentItem(MainMenuFragment.INDEX);
@@ -170,8 +164,6 @@ public class PaintFragment extends BaseEditFragment implements View.OnClickListe
     }
 
     public void savePaintImage() {
-        compositeDisposable.clear();
-
         Disposable applyPaintDisposable = applyPaint(activity.getMainBit())
                 .flatMap(bitmap -> {
                     if (bitmap == null) {

@@ -137,7 +137,6 @@ public class AddTextFragment extends BaseEditFragment implements View.OnClickLis
     }
 
     public void applyTextImage() {
-        compositeDisposable.clear();
         textStickersParentView.hideHelper();
 
         Disposable saveStickerDisposable = applyStickerToImage(activity.getMainBit())
@@ -176,12 +175,6 @@ public class AddTextFragment extends BaseEditFragment implements View.OnClickLis
             item.updateForCanvas(canvas, textStickersParentView);
             item.draw(canvas);
         }
-    }
-
-    @Override
-    public void onPause() {
-        compositeDisposable.clear();
-        super.onPause();
     }
 
     @Override

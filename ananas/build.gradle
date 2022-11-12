@@ -7,6 +7,7 @@ group='com.github.iamutkarshtiwari'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
+    ndkVersion rootProject.ext.ndkVersion
 
     defaultConfig {
         minSdkVersion rootProject.ext.minSdkVersion
@@ -39,8 +40,6 @@ dependencies {
     implementation 'com.github.thirstycoda:Android-Image-Cropper:9b8a011e44'
     implementation "io.reactivex.rxjava2:rxjava:${rxjava_version}"
     implementation "io.reactivex.rxjava2:rxandroid:${rxandroid_version}"
-    implementation "com.github.bumptech.glide:glide:${glide_version}"
-    kapt "com.github.bumptech.glide:compiler:${glide_version}"
     implementation "androidx.core:core-ktx:${core_ktx_version}"
     implementation 'com.github.thirstycoda:CarouselPicker:v1.5'
 }

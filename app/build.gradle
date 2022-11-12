@@ -3,6 +3,8 @@ apply plugin: 'com.github.dcendents.android-maven'
 
 android {
     compileSdkVersion project.ext.compileSdkVersion
+    ndkVersion rootProject.ext.ndkVersion
+
     defaultConfig {
         applicationId "io.github.iamutkarshtiwari.ananasproject"
         minSdkVersion project.ext.minSdkVersion

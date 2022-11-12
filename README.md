@@ -63,7 +63,7 @@ Add it in your root build.gradle at the end of repositories:
 
 Add the dependency in gradle file of app module like this
 ```
-implementation 'com.github.iamutkarshtiwari:Ananas:1.2.4'
+implementation 'com.github.iamutkarshtiwari:Ananas:1.2.6'
 ```
 
 ## [Important!]
@@ -116,6 +116,7 @@ Use the following code to build and launch the photo editor:
          .withBrightnessFeature()
          .withSaturationFeature()
          .withBeautyFeature()
+         .withStickerFeature()
          .forcePortrait(true)  // Add this to force portrait mode (It's set to false by default)
          .setSupportActionBarVisibility(false) // To hide app's default action bar
          .build();
@@ -136,7 +137,7 @@ You can receive the new processed image path and it's edit status like this-
 
         if (requestCode == PHOTO_EDITOR_REQUEST_CODE) { // same code you used while starting
             String newFilePath = data.getStringExtra(ImageEditorIntentBuilder.OUTPUT_PATH);
-            boolean isImageEdit = data.getBooleanExtra(EditImageActivity.IMAGE_IS_EDIT, false);
+            boolean isImageEdit = data.getBooleanExtra(EditImageActivity.IS_IMAGE_EDITED, false);
         }
     }
 ```

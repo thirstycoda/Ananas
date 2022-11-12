@@ -95,12 +95,6 @@ public class FilterListFragment extends BaseEditFragment {
     }
 
     @Override
-    public void onPause() {
-        compositeDisposable.clear();
-        super.onPause();
-    }
-
-    @Override
     public void onDestroy() {
         tryRecycleFilterBitmap();
         compositeDisposable.dispose();
@@ -119,8 +113,6 @@ public class FilterListFragment extends BaseEditFragment {
             currentBitmap = activity.getMainBit();
             return;
         }
-
-        compositeDisposable.clear();
 
         Disposable applyFilterDisposable = applyFilter(filterIndex)
                 .subscribeOn(Schedulers.computation())

@@ -9,7 +9,7 @@ buildscript {
     dependencies {
         classpath "com.android.tools.build:gradle:${gradle_version}"
         classpath "com.github.dcendents:android-maven-gradle-plugin:${maven_plugin_version}"
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlin_gradle_plugin_version}"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlin_version}"
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -19,6 +19,14 @@ buildscript {
 configurations.all {
     resolutionStrategy {
         force "com.android.support:support-v4:${android_support_version}"
+        eachDependency { details ->
+            def requested = details.requested
+            if (requested.group == 'com.android.support') {
+                if (!requested.name.startsWith("multidex")) {
+                    details.useVersion '25.3.0'
+                }
+            }
+        }
     }
 }
 
@@ -34,6 +42,7 @@ allprojects {
         minSdkVersion=16
         targetSdkVersion=27
         compileSdkVersion=28
+        ndkVersion="25.1.8937393"
     }
 }
 

@@ -159,10 +159,4 @@ public class BeautyFragment extends BaseEditFragment implements SeekBar.OnSeekBa
         super.onDestroy();
         disposable.dispose();
     }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        disposable.clear();
-    }
 }
