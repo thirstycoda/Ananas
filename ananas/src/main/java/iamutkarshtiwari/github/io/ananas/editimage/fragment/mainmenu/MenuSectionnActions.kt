@@ -1,5 +1,5 @@
 package iamutkarshtiwari.github.io.ananas.editimage.fragment.mainmenu
 
-interface MenuSectionnActions {
+public interface MenuSectionnActions {
     fun setMenuOptionsClickable(isClickable: Boolean)
 }

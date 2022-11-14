@@ -377,24 +377,38 @@ public class BitmapUtils {
     }
 
     public static Bitmap imageOrientationValidator(Bitmap bitmap, String path) {
-        ExifInterface ei;
         try {
-            ei = new ExifInterface(path);
-            int orientation = ei.getAttributeInt(ExifInterface.TAG_ORIENTATION,
-                    ExifInterface.ORIENTATION_NORMAL);
-            switch (orientation) {
-                case ExifInterface.ORIENTATION_ROTATE_90:
-                    bitmap = rotateImage(bitmap, 90);
-                    break;
-                case ExifInterface.ORIENTATION_ROTATE_180:
-                    bitmap = rotateImage(bitmap, 180);
-                    break;
-                case ExifInterface.ORIENTATION_ROTATE_270:
-                    bitmap = rotateImage(bitmap, 270);
-                    break;
-            }
+            return imageOrientationValidator(bitmap, new ExifInterface(path));
         } catch (IOException e) {
             e.printStackTrace();
+        }
+
+        return bitmap;
+    }
+
+    public static Bitmap imageOrientationValidator(Bitmap bitmap, InputStream stream) {
+        try {
+            return imageOrientationValidator(bitmap, new ExifInterface(stream));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return bitmap;
+    }
+
+    public static Bitmap imageOrientationValidator(Bitmap bitmap, ExifInterface exif) {
+        int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION,
+                ExifInterface.ORIENTATION_NORMAL);
+        switch (orientation) {
+            case ExifInterface.ORIENTATION_ROTATE_90:
+                bitmap = rotateImage(bitmap, 90);
+                break;
+            case ExifInterface.ORIENTATION_ROTATE_180:
+                bitmap = rotateImage(bitmap, 180);
+                break;
+            case ExifInterface.ORIENTATION_ROTATE_270:
+                bitmap = rotateImage(bitmap, 270);
+                break;
         }
 
         return bitmap;
@@ -491,7 +505,9 @@ public class BitmapUtils {
             InputStream stream = null;
             try {
                 stream = resolver.openInputStream(uri);
-                return BitmapFactory.decodeStream(stream, EMPTY_RECT, options);
+                Bitmap originalBitmap = BitmapFactory.decodeStream(stream, EMPTY_RECT, options);
+                InputStream file = resolver.openInputStream(uri);
+                return imageOrientationValidator(originalBitmap, file);
             } catch (OutOfMemoryError e) {
                 options.inSampleSize *= 2;
             } finally {
