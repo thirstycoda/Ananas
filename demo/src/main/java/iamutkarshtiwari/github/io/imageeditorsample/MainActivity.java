@@ -138,6 +138,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     .withFonts(fonts)
                     .forcePortrait(true)
                     .setSupportActionBarVisibility(false)
+                    .withMinimumAspectRatios(4, 5)
+                    .withMaximumAspectRatios(191, 100)
                     .build();
 
             EditImageActivity.start(editResultLauncher, intent, this);

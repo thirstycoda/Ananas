@@ -124,11 +124,9 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
     private int aspectRatioMinX;
     private int aspectRatioMinY;
     private float aspectRatioMin;
-    private String aspectRatioMinMsg;
     private int aspectRatioMaxX;
     private int aspectRatioMaxY;
     private float aspectRatioMax;
-    private String aspectRatioMaxMsg;
 
     public static void start(ActivityResultLauncher<Intent> launcher, Intent intent, Context context) {
         String sourcePath = intent.getStringExtra(ImageEditorIntentBuilder.SOURCE_PATH);
@@ -176,10 +174,8 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
         aspectRatios = (List<AspectRatio>) getIntent().getSerializableExtra(ImageEditorIntentBuilder.ASPECT_RATIOS);
         aspectRatioMinX = getIntent().getIntExtra(ImageEditorIntentBuilder.ASPECT_RATIO_MIN_X, 0);
         aspectRatioMinY = getIntent().getIntExtra(ImageEditorIntentBuilder.ASPECT_RATIO_MIN_Y, 0);
-        aspectRatioMinMsg = getIntent().getStringExtra(ImageEditorIntentBuilder.ASPECT_RATIO_MIN_MSG);
         aspectRatioMaxX = getIntent().getIntExtra(ImageEditorIntentBuilder.ASPECT_RATIO_MAX_X, 0);
         aspectRatioMaxY = getIntent().getIntExtra(ImageEditorIntentBuilder.ASPECT_RATIO_MAX_Y, 0);
-        aspectRatioMaxMsg = getIntent().getStringExtra(ImageEditorIntentBuilder.ASPECT_RATIO_MAX_MSG);
 
         if (aspectRatioMinX > 0 && aspectRatioMinY > 0) {
             aspectRatioMin = (float) aspectRatioMinX/aspectRatioMinY;
@@ -242,8 +238,8 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
 
         cropFragment = CropFragment.newInstance();
         cropFragment.setAspectRatios(aspectRatios);
-        cropFragment.setMinimumAspectRatio(aspectRatioMinX, aspectRatioMinY, aspectRatioMinMsg);
-        cropFragment.setMaximumAspectRatio(aspectRatioMaxX, aspectRatioMaxY, aspectRatioMaxMsg);
+        cropFragment.setMinimumAspectRatio(aspectRatioMinX, aspectRatioMinY);
+        cropFragment.setMaximumAspectRatio(aspectRatioMaxX, aspectRatioMaxY);
 
         rotateFragment = RotateFragment.newInstance();
         paintFragment = PaintFragment.newInstance();
@@ -401,18 +397,6 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
     protected void doSaveImage() {
         if (!needSave())
             return;
-
-        float aspectRatio = (float) mainBitmap.getWidth() / mainBitmap.getHeight();
-
-        if (aspectRatio < aspectRatioMin) {
-            Toast.makeText(this, aspectRatioMinMsg, Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        if (aspectRatioMax > 0 && aspectRatio > aspectRatioMax) {
-            Toast.makeText(this, aspectRatioMaxMsg, Toast.LENGTH_SHORT).show();
-            return;
-        }
 
         compositeDisposable.clear();
 

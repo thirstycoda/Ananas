@@ -39,8 +39,8 @@ import io.reactivex.disposables.CompositeDisposable;
 public class CropFragment extends BaseEditFragment {
     public static final int INDEX = ModuleConfig.INDEX_CROP;
 
-    private static int SELECTED_COLOR = R.color.white;
-    private static int UNSELECTED_COLOR = R.color.text_color_gray_3;
+    private static final int SELECTED_COLOR = R.color.white;
+    private static final int UNSELECTED_COLOR = R.color.text_color_gray_3;
 
     private View mainView;
     private LinearLayout ratioList;
@@ -54,13 +54,11 @@ public class CropFragment extends BaseEditFragment {
     private int aspectRatioMaxX;
     private int aspectRatioMaxY;
     private float aspectRatioMax;
-    private String aspectRatioMinMsg;
-    private String aspectRatioMaxMsg;
 
-    private CropRationClick cropRatioClick = new CropRationClick();
+    private final CropRationClick cropRatioClick = new CropRationClick();
     private TextView selectedTextView;
 
-    private CompositeDisposable disposables = new CompositeDisposable();
+    private final CompositeDisposable disposables = new CompositeDisposable();
 
     public static CropFragment newInstance() {
         return new CropFragment();
@@ -139,17 +137,15 @@ public class CropFragment extends BaseEditFragment {
         this.aspectRatios = aspectRatios;
     }
 
-    public void setMinimumAspectRatio(int aspectRatioX, int aspectRatioY, String validationMessage) {
+    public void setMinimumAspectRatio(int aspectRatioX, int aspectRatioY) {
         this.aspectRatioMinX = aspectRatioX;
         this.aspectRatioMinY = aspectRatioY;
-        this.aspectRatioMinMsg = validationMessage;
         this.aspectRatioMin = (float) aspectRatioX / aspectRatioY;
     }
 
-    public void setMaximumAspectRatio(int aspectRatioX, int aspectRatioY, String validationMessage) {
+    public void setMaximumAspectRatio(int aspectRatioX, int aspectRatioY) {
         this.aspectRatioMaxX = aspectRatioX;
         this.aspectRatioMaxY = aspectRatioY;
-        this.aspectRatioMaxMsg = validationMessage;
         this.aspectRatioMax = (float) aspectRatioX / aspectRatioY;
     }
 
@@ -252,19 +248,6 @@ public class CropFragment extends BaseEditFragment {
     }
 
     public void applyCropImage() {
-        RectF cropRect = cropPanel.getCropWindowRect();
-        float cropAspectRatio = (cropRect.right - cropRect.left)/(cropRect.bottom - cropRect.top);
-
-        if (cropAspectRatio < aspectRatioMin) {
-            Toast.makeText(getContext(), aspectRatioMinMsg, Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        if (aspectRatioMax > 0 && cropAspectRatio > aspectRatioMax) {
-            Toast.makeText(getContext(), aspectRatioMaxMsg, Toast.LENGTH_SHORT).show();
-            return;
-        }
-
         disposables.add(getCroppedBitmap()
                 .subscribeOn(AndroidSchedulers.mainThread())
                 .observeOn(AndroidSchedulers.mainThread())
