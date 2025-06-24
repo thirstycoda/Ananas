@@ -11,8 +11,6 @@ android {
     defaultConfig {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
     }
     buildTypes {
         release {
@@ -21,11 +19,24 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
     packagingOptions{
         doNotStrip '*/mips/*.so'
+    }
+    namespace 'iamutkarshtiwari.github.io.ananas'
+    buildFeatures {
+        buildConfig true
+    }
+}
+
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+    kotlinOptions {
+        jvmTarget = "17"
+        freeCompilerArgs += [
+                "-Xjvm-default=all"
+        ]
     }
 }
 
@@ -34,8 +45,9 @@ dependencies {
     testImplementation "junit:junit:${junit_version}"
     testImplementation "org.robolectric:robolectric:${robolectric_version}"
     implementation "androidx.appcompat:appcompat:${androidx_compat}"
+    implementation 'com.google.android.material:material:1.9.0'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${kotlin_version}"
-    implementation "com.github.eltos:simpledialogfragment:${simple_dialog_fragment_version}"
+    implementation "com.github.eltos:SimpleDialogFragments:v${simple_dialog_fragment_version}"
     implementation 'com.github.thirstycoda:Android-Image-Cropper:9b8a011e44'
     implementation "io.reactivex.rxjava2:rxjava:${rxjava_version}"
     implementation "io.reactivex.rxjava2:rxandroid:${rxandroid_version}"

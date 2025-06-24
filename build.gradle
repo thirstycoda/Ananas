@@ -7,7 +7,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:${gradle_version}"
+        classpath 'com.android.tools.build:gradle:8.10.1'
         classpath "com.github.dcendents:android-maven-gradle-plugin:${maven_plugin_version}"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlin_version}"
 
@@ -39,9 +39,9 @@ allprojects {
 
     project.ext {
         buildToolsVersion="20.0.0"
-        minSdkVersion=16
-        targetSdkVersion=33
-        compileSdkVersion=33
+        minSdkVersion=21
+        targetSdkVersion=35
+        compileSdkVersion=35
         ndkVersion="25.1.8937393"
     }
 }
